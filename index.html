@@ -299,6 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('click', function (e) {
     var el = e.target.closest ? e.target.closest('button,a') : null;
     if (!el) return;
+    if (el.closest('[role="dialog"]') || el.hasAttribute('download')) return;
     var isDownload = el.getAttribute('aria-label') === 'Download' ||
       (el.textContent || '').trim().toLowerCase() === 'download';
     if (isDownload) { e.preventDefault(); e.stopPropagation(); openModal(); }
